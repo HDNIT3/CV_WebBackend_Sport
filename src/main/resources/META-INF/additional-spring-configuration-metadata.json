@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "server.url.frontend",
-  "type": "java.lang.String",
-  "description": "A description for 'server.url.frontend'"
-}]}
+{"properties": [
+  {
+    "name": "server.url.frontend",
+    "type": "java.lang.String",
+    "description": "A description for 'server.url.frontend'"
+  },
+  {
+    "name": "server.jwt.secretkey",
+    "type": "java.lang.String",
+    "description": "A description for 'server.jwt.secretkey'"
+  }
+]}
