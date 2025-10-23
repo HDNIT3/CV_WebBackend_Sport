@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errors.put(error.getField(), error.getDefaultMessage());
         });
-        return ResponseEntity.badRequest().body(new data("Thất bại", "Validation failed", errors));
+        return ResponseEntity.badRequest().body(new data("Failure", "Validation failed", errors));
     }
 
     // Bắt tất cả các lỗi khác

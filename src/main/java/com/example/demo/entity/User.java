@@ -1,5 +1,10 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -26,4 +31,20 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    private String fullname;
+
+    @Column(nullable = true)
+    private String emailString;
+
+    @Column(nullable = true)
+    private String phone;
+
+    private boolean isActive = false;
+
+    @OneToMany(mappedBy = "user_create", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Room> rooms = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Room> rooms_on = new HashSet<>();
 }

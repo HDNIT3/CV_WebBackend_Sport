@@ -23,7 +23,7 @@ public class UserService {
 
     public User register(String username, String password) {
         if (userRepository.existsByUsername(username)) {
-            throw new RuntimeException("User đã tồn tại");
+            throw new RuntimeException("User already exists");
         }
 
         User user = new User();
@@ -34,11 +34,14 @@ public class UserService {
     }
 
     public Map<String, Object> login(String username, String password) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User không tìm thấy"));
-
+    		System.out.println(username + "_____" + password );
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null) {
+        	 throw new RuntimeException("User not found");
+        }
+        
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Sai username hoặc password");
+            throw new RuntimeException("error username or password");
         }
 
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());

@@ -45,7 +45,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             } catch (Exception e) {
-                System.out.println("JWT không hợp lệ: " + e.getMessage());
+            		throw new RuntimeException("JWT Not valid: " + e.getMessage());
             }
         }
 

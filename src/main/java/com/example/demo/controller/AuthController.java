@@ -19,9 +19,9 @@ public class AuthController {
     public ResponseEntity<data> register(@Valid @RequestBody RegisterRequest request) {
         try {
             userService.register(request.getUsername(), request.getPassword());
-            return ResponseEntity.ok().body(new data("Thành công","Đăng kí thành công",request));
+            return ResponseEntity.ok().body(new data("Success","Registered successfully",request));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new data("Thất bại",e.getMessage(),null));
+            return ResponseEntity.badRequest().body(new data("Failure",e.getMessage(),null));
         }
     }
 
@@ -29,9 +29,9 @@ public class AuthController {
     public ResponseEntity<data> login(@Valid @RequestBody RegisterRequest request) {
         try {
             Map<String, Object> response = userService.login(request.getUsername(), request.getPassword());
-            return ResponseEntity.ok(new data("Thành công", "Đăng nhập thành công", response));
+            return ResponseEntity.ok(new data("Success", "Log in successfully", response));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new data("Thất bại", e.getMessage(), null));
+            return ResponseEntity.badRequest().body(new data("Failure", e.getMessage(), null));
         }
     }
 }
